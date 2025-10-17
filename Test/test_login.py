@@ -1,9 +1,7 @@
 import time
-
-import pytest
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from Demo.Pages.login_page import Loginpage
+from ..Pages.login_page import Loginpage
 from utilities.read_properties import Read_config
 
 

@@ -2,15 +2,17 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 
 from utilities.read_properties import Read_config
-from Demo.Pages.login_page import Loginpage
+from Pages.login_page import Loginpage
 
-from Demo.Pages.users_page import Users_page
+from Pages.users_page import Users_page
 
 
 class Test02admin :
     loginurl=Read_config.get_admin_page_url()
     username =Read_config.get_username()
     password =Read_config.get_password()
+    
+    
 
     def setup_method(self):
         self.driver = webdriver.Firefox()
@@ -30,6 +32,12 @@ class Test02admin :
         act_validation = self.driver.find_element(By.XPATH,"//span[@class='oxd-topbar-header-breadcrumb']//h6[text()='User Management']").text
         exp_validation ="User Management"
         assert act_validation==exp_validation,f"expected '{exp_validation}', but got '{act_validation}'"
+        self.userpage.click_add_button()
+        act_adduser_validation = self.driver.find_element(By.XPATH,"//h6[text()='Add User']").text
+        exp_adduser_validation ="Add User"      
+        
+        
+        
 
 
 
