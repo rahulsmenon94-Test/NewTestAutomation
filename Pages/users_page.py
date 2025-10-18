@@ -15,8 +15,6 @@ class Users_page :
         self.driver.find_element(*self.user_role_dropdown).click()
         # Additional methods for interacting with the Users page can be added here
           
-        
-
-
+    
 
 

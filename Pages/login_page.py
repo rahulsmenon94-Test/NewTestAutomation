@@ -21,7 +21,11 @@ class Loginpage :
         self.driver.find_element(*self.login_button).click()
 
     def loginpage(self,username,password):
+        self.driver.implicitly_wait(10)
         self.driver.find_element(*self.username_text).send_keys(username)
+        self.driver.implicitly_wait(10)
         self.driver.find_element(*self.password_text).send_keys(password)
+        self.driver.implicitly_wait(10)
         self.driver.find_element(*self.login_button).click()
+        
         
