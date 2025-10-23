@@ -1,3 +1,4 @@
+import json
 from selenium import webdriver
 from Pages.login_page import Loginpage
 from Pages.users_page import Users_page
@@ -11,6 +12,13 @@ def before_scenario(context, scenario):
     context.password = Read_config.get_password()
     context.login = Loginpage(context.driver)
     context.user=Users_page(context.driver)
+
+
+def before_all(context):
+    with open("Test_data/users.json", "r") as f:
+        test_data = json.load(f)
+        context.test_list = test_data["users"]  
+
 
 def after_scenario(context, scenario):
     context.driver.quit()

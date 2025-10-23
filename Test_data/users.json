@@ -1,0 +1,19 @@
+{
+  "users": [
+   {
+  "employee_name": "Hans Franz",
+  "username": "QWERTYY",
+  "password": "John@1234",
+  "confirm_password": "John@1234"
+}
+,
+    
+  {
+   "employee_name": "Ravi M B",
+    "username": "Rahul33333",
+    "password": "John@1234",
+    "confirm_password": "John@1234"
+}
+  ]
+}
+  
