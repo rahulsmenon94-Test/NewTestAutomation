@@ -11,13 +11,15 @@ def before_scenario(context, scenario):
     context.username = Read_config.get_username()
     context.password = Read_config.get_password()
     context.login = Loginpage(context.driver)
-    context.user=Users_page(context.driver)
+    context.userpage=Users_page(context.driver)
+    context.driver.implicitly_wait(10)
+
 
 
 def before_all(context):
     with open("Test_data/users.json", "r") as f:
         test_data = json.load(f)
-        context.test_list = test_data["users"]  
+        context.test_list = test_data["users"] 
 
 
 def after_scenario(context, scenario):

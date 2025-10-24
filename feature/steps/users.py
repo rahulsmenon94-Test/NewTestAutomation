@@ -9,10 +9,14 @@ def enter_homepage(context):
 
 @when('user adds the users')
 def add_users(context):
-    context.user.click_admin()
-    for user in context.test_list:  # ✅ Access test_list via context
-        context.user.click_add_user(user)
+    print("✅ scroll")
+    context.userpage.click_admin()
 
+    for user in context.test_list:
+    #     context.userpage.click_add_user(user)
+        context.userpage.click_edit_button_by_username(user["username"])
+
+  
 
 
 @then('Users are added Successfuly')

@@ -18,12 +18,15 @@ class Users_page :
     password_name_text=(By.XPATH,"//label[normalize-space()='Password']/following::input[@type='password'][1]")
     confirm_password_text=(By.XPATH,"//label[normalize-space()='Password']/following::input[@type='password'][2]")
     add_button_save=(By.XPATH, "//button[normalize-space()='Save']")
+    checkbox = (By.XPATH, "//i[contains(@class, 'oxd-checkbox-input-icon')]")
     def __init__(self,driver):
         self.driver =driver
 
     def click_admin(self):
         time.sleep(4)
         self.driver.find_element(*self.admin_select).click()
+        
+        
     def click_add_user(self,user):
         time.sleep(2)
         self.driver.find_element(*self.add_button).click()
@@ -53,10 +56,36 @@ class Users_page :
         self.driver.find_element(*self.add_button_save).click()
         time.sleep(10)
         self.driver.find_element(*self.admin_select).click()
-    
         
-        # Additional methods for interacting with the Users page can be added here
-          
     
+    # def click_edit_button_by_username(self,username):
+    #     # row_xpath=("//div[@class='oxd-table-cell oxd-padding-cell' ]//div[normalize-space()='{username}']")
+    #     row_xpath = f"//div[@class='oxd-table-cell oxd-padding-cell']//div[normalize-space()='{username}']"
+    #     row_element=self.driver.find_element(By.XPATH,row_xpath)
+        
+    #     edit_button=row_element.find_element(By.XPATH,"//button[contains(@class,'oxd-icon-button') and .//i[contains(@class,'bi-pencil-fill')]]")
+    #     time.sleep(2)
+    #     self.driver.execute_script("arguments[0].scrollIntoView(true);", edit_button)
+    #     edit_button.click()
+    #     time.sleep(20)
+           
+    def click_edit_button_by_username(self, username):
+        print(f"🔍 Searching for username: '{username}'")
+
+    # Locate the row that contains the username
+        row_xpath = f"//div[contains(@class,'oxd-table-cell') and normalize-space()='{username}']/ancestor::div[contains(@class,'oxd-table-row')]"
+        WebDriverWait(self.driver, 10).until(
+        EC.presence_of_element_located((By.XPATH, row_xpath))
+    )
+        row_element = self.driver.find_element(By.XPATH, row_xpath)
+
+    # Find the edit button inside that row only
+        edit_button = row_element.find_element(By.XPATH, ".//button[contains(@class,'oxd-icon-button') and .//i[contains(@class,'bi-pencil-fill')]]")
+        self.driver.execute_script("arguments[0].scrollIntoView(true);", edit_button)
+        time.sleep(1)
+        edit_button.click()
+        time.sleep(20)
+
+
 
 
