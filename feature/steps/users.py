@@ -1,4 +1,5 @@
 import json
+import time
 from behave import *
 from Pages.users_page import Users_page
 
@@ -9,16 +10,25 @@ def enter_homepage(context):
 
 @when('user adds the users')
 def add_users(context):
-    print("✅ scroll")
+    time.sleep(2)
     context.userpage.click_admin()
-
     for user in context.test_list:
     #     context.userpage.click_add_user(user)
-        context.userpage.click_edit_button_by_username(user["username"])
+          context.userpage.click_edit_button_by_username(user["username"])
 
   
-
 
 @then('Users are added Successfuly')
 def users_added(context):
     print("✅ User added successfully")
+    
+@when('user edit the users')
+def edit_users(context):
+    context.userpage.click_admin()
+    for user in context.test_list:
+        context.userpage.click_edit_button_by_username(user["username"])
+        context.userpage.edit_user()
+@then('Users are edited Successfuly')
+def users_edited(context):
+    print("✅ User edited successfully")
+        

@@ -13,7 +13,8 @@ class Users_page :
     select_ess = (By.XPATH, "//div[contains(@class,'oxd-select-option') and normalize-space()='ESS']")
     employee_name_text = (By.XPATH,"//input[@placeholder='Type for hints...']")
     status_dropdown = (By.XPATH,"//label[normalize-space()='Status']/following::div[@class='oxd-select-text oxd-select-text--active'][1]")
-    select_enabled=(By.XPATH, "//div[contains(@class,'oxd-select-option') and normalize-space()='Disabled']")
+    select_enabled=(By.XPATH, "//div[contains(@class,'oxd-select-option') and normalize-space()='Enabled']")
+    select_disabled=(By.XPATH, "//div[contains(@class,'oxd-select-option') and normalize-space()='Disabled']")
     username_name_text = (By.XPATH, "//label[normalize-space()='Username']/following::input[@class='oxd-input oxd-input--active'][1]")
     password_name_text=(By.XPATH,"//label[normalize-space()='Password']/following::input[@type='password'][1]")
     confirm_password_text=(By.XPATH,"//label[normalize-space()='Password']/following::input[@type='password'][2]")
@@ -58,16 +59,7 @@ class Users_page :
         self.driver.find_element(*self.admin_select).click()
         
     
-    # def click_edit_button_by_username(self,username):
-    #     # row_xpath=("//div[@class='oxd-table-cell oxd-padding-cell' ]//div[normalize-space()='{username}']")
-    #     row_xpath = f"//div[@class='oxd-table-cell oxd-padding-cell']//div[normalize-space()='{username}']"
-    #     row_element=self.driver.find_element(By.XPATH,row_xpath)
-        
-    #     edit_button=row_element.find_element(By.XPATH,"//button[contains(@class,'oxd-icon-button') and .//i[contains(@class,'bi-pencil-fill')]]")
-    #     time.sleep(2)
-    #     self.driver.execute_script("arguments[0].scrollIntoView(true);", edit_button)
-    #     edit_button.click()
-    #     time.sleep(20)
+
            
     def click_edit_button_by_username(self, username):
         print(f"🔍 Searching for username: '{username}'")
@@ -84,8 +76,12 @@ class Users_page :
         self.driver.execute_script("arguments[0].scrollIntoView(true);", edit_button)
         time.sleep(1)
         edit_button.click()
-        time.sleep(20)
+        time.sleep(2)
 
-
+    def edit_user(self):
+        self.driver.find_element(*self.status_dropdown).click()
+        self.driver.find_element(*self.select_disabled).click()
+        self.driver.find_element(*self.add_button_save).click()
+        time.sleep(4)
 
 
