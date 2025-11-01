@@ -66,6 +66,7 @@ class Users_page :
 
     # Locate the row that contains the username
         row_xpath = f"//div[contains(@class,'oxd-table-cell') and normalize-space()='{username}']/ancestor::div[contains(@class,'oxd-table-row')]"
+       
         WebDriverWait(self.driver, 10).until(
         EC.presence_of_element_located((By.XPATH, row_xpath))
     )

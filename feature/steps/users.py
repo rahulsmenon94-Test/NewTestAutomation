@@ -13,7 +13,7 @@ def add_users(context):
     time.sleep(2)
     context.userpage.click_admin()
     for user in context.test_list:
-    #     context.userpage.click_add_user(user)
+          context.userpage.click_add_user(user)
           context.userpage.click_edit_button_by_username(user["username"])
 
   

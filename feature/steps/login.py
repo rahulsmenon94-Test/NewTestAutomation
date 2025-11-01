@@ -14,7 +14,7 @@ def entered_credentials(context):
 @then('the user should be redirected to the dashboard')
 def logged_inn(context):
     dashboard_text = context.driver.find_element(By.XPATH, "//h6[text()='Dashboard']").text
-    assert dashboard_text == "Dashboard", f"❌ Expected 'Dashboard', but got '{dashboard_text}'"
+    assert dashboard_text == "Dashboard", f"Expected 'Dashboard', but got '{dashboard_text}'"
     print(f"✅ Login successful: {dashboard_text}")
     
     
@@ -27,7 +27,7 @@ def invalid_credentials(context, user, pwd):
 def validation_message(context):
     exp_validation = "Invalid credentials"
     act_validation = context.driver.find_element(By.XPATH, "//p[text()='Invalid credentials']").text
-    assert act_validation == exp_validation, f"❌ Expected '{exp_validation}' but got '{act_validation}'"
+    assert act_validation == exp_validation, f" Expected '{exp_validation}' but got '{act_validation}'"
     print(f"✅ Validation message displayed: {act_validation}")
     
     
